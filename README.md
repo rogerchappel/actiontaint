@@ -68,3 +68,9 @@ npm run release:check
 ```
 
 Use `npm run package:smoke` or `npm pack --dry-run` to confirm the published tarball includes the support docs and runnable package contents.
+
+## Package contents
+
+The npm package allowlist includes the runnable source and public support
+documents: `README.md`, `LICENSE`, `SECURITY.md`, `CHANGELOG.md`,
+`CONTRIBUTING.md`, and `CODE_OF_CONDUCT.md`.
