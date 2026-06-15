@@ -1,5 +1,9 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+
+const execFileAsync = promisify(execFile);
 
 describe('actiontaint', () => {
   it('should export from src/index.js', async () => {
@@ -28,5 +32,14 @@ describe('actiontaint', () => {
   it('should include LICENSE in npm pack', async () => {
     const pkg = await import('../package.json', { with: { type: 'json' } });
     assert.ok(pkg.default.files.includes('LICENSE'), 'LICENSE should be in files');
+  });
+
+  it('should expose help and version output from the CLI', async () => {
+    const help = await execFileAsync(process.execPath, ['src/index.js', '--help']);
+    assert.match(help.stdout, /Usage:/);
+    assert.match(help.stdout, /actiontaint --version/);
+
+    const version = await execFileAsync(process.execPath, ['src/index.js', '--version']);
+    assert.match(version.stdout, /^0\.1\.0\s*$/);
   });
 });

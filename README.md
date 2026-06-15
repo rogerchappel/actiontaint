@@ -37,6 +37,9 @@ npm run package:smoke
 npm run release:check
 ```
 
+`npm run release:check` runs the Node test suite, syntax check, CLI smoke test,
+and package dry run so the documented release path matches CI.
+
 ## Limitations
 
 - The package is still a v0.1.0 project and may not expose a finished CLI or public API yet.
@@ -54,20 +57,6 @@ See [SECURITY.md](SECURITY.md). Do not include secrets, private tokens, propriet
 ## License
 
 MIT
-
-## Verification
-
-Run the release-readiness checks before publishing or cutting a PR:
-
-```bash
-npm run build
-npm run test
-npm run smoke
-npm run package:smoke
-npm run release:check
-```
-
-Use `npm run package:smoke` or `npm pack --dry-run` to confirm the published tarball includes the support docs and runnable package contents.
 
 ## Package contents
 
