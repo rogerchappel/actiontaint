@@ -4,11 +4,11 @@ Action workflow trust and taint analysis for repositories.
 
 ## Status
 
-This repository is currently a planning and scaffolding repo. It contains project governance, product notes, and release hygiene files, but it does not yet include the package implementation advertised by `package.json`. Treat it as not ready for installation or production use until `src/` and real usage examples land.
+This repository is an early v0.1.0 implementation. It contains a conservative local-first workflow scanner plus project governance, product notes, and release hygiene files. Treat it as preview software until more workflow patterns and fixtures are covered.
 
 ## Install
 
-There is no supported install path yet. For local stewardship or planning work, install dependencies only when a future implementation adds them:
+For local development:
 
 ```sh
 npm install
@@ -16,7 +16,18 @@ npm install
 
 ## Use
 
-No runtime API or CLI is available yet. Start with the planning material in `docs/PRD.md` and `ROADMAP.md` before implementing package entry points.
+Scan a workflow directory for risky uses of untrusted GitHub event text:
+
+```sh
+npx actiontaint scan .github/workflows
+npx actiontaint scan .github/workflows --json
+```
+
+From a checkout, the same smoke path is:
+
+```sh
+node src/index.js scan .github/workflows
+```
 
 ## Verify
 
@@ -34,9 +45,9 @@ npm run release:check
 
 ## Limitations
 
-- The package entry points are placeholders until an implementation is added.
-- README examples should be updated with real commands before any release claim is made.
-- Security and production posture should be reassessed after the first implementation lands.
+- The package is still a v0.1.0 project and the scanner uses conservative line-based workflow checks rather than full YAML or expression evaluation.
+- Treat the PRD as direction, not a guarantee that every listed capability is implemented.
+- Do not use the package as the only control for production security, compliance, or release decisions until fixtures cover your workflow patterns.
 
 ## Contributing
 
