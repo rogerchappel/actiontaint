@@ -1,74 +1,51 @@
 # actiontaint
 
-actiontaint is an early-stage local-first developer tool.
+Action workflow trust and taint analysis for repositories.
 
 ## Status
 
-This repository is early-stage. The README now reflects the current project intent from `docs/PRD.md`, but behavior should still be treated as pre-1.0 until implementation, examples, and release checks mature.
+This repository is currently a planning and scaffolding repo. It contains project governance, product notes, and release hygiene files, but it does not yet include the package implementation advertised by `package.json`. Treat it as not ready for installation or production use until `src/` and real usage examples land.
 
-## Install from a checkout
+## Install
+
+There is no supported install path yet. For local stewardship or planning work, install dependencies only when a future implementation adds them:
 
 ```sh
-git clone https://github.com/rogerchappel/actiontaint.git
-cd actiontaint
 npm install
 ```
 
 ## Use
 
-Start by reading the product notes and running the local checks:
+No runtime API or CLI is available yet. Start with the planning material in `docs/PRD.md` and `ROADMAP.md` before implementing package entry points.
+
+## Verify
+
+Run the available repository checks before opening a pull request:
 
 ```sh
-sed -n '1,120p' docs/PRD.md
 npm test
 ```
 
-If you are evaluating the package contents before a release, run:
+If `release:check` exists in `package.json`, run it as the broader release-readiness gate:
 
 ```sh
 npm run release:check
 ```
-
-## Verification
-
-```sh
-npm test
-npm run package:smoke
-npm run release:check
-```
-
-`npm run release:check` runs the Node test suite, syntax check, CLI smoke test,
-and package dry run so the documented release path matches CI.
 
 ## Limitations
 
-- The package is still a v0.1.0 project and may not expose a finished CLI or public API yet.
-- Treat the PRD as direction, not a guarantee that every listed capability is implemented.
-- Do not use the package for production security, compliance, or release decisions until tests and examples cover that workflow.
+- The package entry points are placeholders until an implementation is added.
+- README examples should be updated with real commands before any release claim is made.
+- Security and production posture should be reassessed after the first implementation lands.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Keep changes small, update the PRD or README when scope changes, and include the exact verification command in every pull request.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution expectations. Changes should be small, reviewable, and verified before review.
 
 ## Security
 
-See [SECURITY.md](SECURITY.md). Do not include secrets, private tokens, proprietary dependency data, or sensitive logs in public issues or examples.
+See [SECURITY.md](SECURITY.md) for vulnerability reporting guidance.
 
 ## License
 
 MIT
-
-## Package contents
-
-The npm package allowlist includes the runnable source and public support
-documents: `README.md`, `LICENSE`, `SECURITY.md`, `CHANGELOG.md`,
-`CONTRIBUTING.md`, and `CODE_OF_CONDUCT.md`.
-
-## Release Verification
-
-Before publishing or tagging a release, run the local verification path that matches CI:
-
-- `npm run release:check`
-- `npm run package:smoke`
-
-The release checklist in `docs/release-readiness.md` captures the package surface, CLI bins, and reviewer notes for future release PRs.
