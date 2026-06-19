@@ -16,17 +16,17 @@ npm install
 
 ## Use
 
-Start by reading the product notes and running the local checks:
+Scan a workflow directory for risky uses of untrusted GitHub event text:
 
 ```sh
-sed -n '1,120p' docs/PRD.md
-npm test
+npx actiontaint scan .github/workflows
+npx actiontaint scan .github/workflows --json
 ```
 
-If you are evaluating the package contents before a release, run:
+From a checkout, the same smoke path is:
 
 ```sh
-npm run release:check
+node src/index.js scan .github/workflows
 ```
 
 ## Verification
@@ -42,9 +42,9 @@ and package dry run so the documented release path matches CI.
 
 ## Limitations
 
-- The package is still a v0.1.0 project and may not expose a finished CLI or public API yet.
+- The package is still a v0.1.0 project and the scanner uses conservative line-based workflow checks rather than full YAML or expression evaluation.
 - Treat the PRD as direction, not a guarantee that every listed capability is implemented.
-- Do not use the package for production security, compliance, or release decisions until tests and examples cover that workflow.
+- Do not use the package as the only control for production security, compliance, or release decisions until fixtures cover your workflow patterns.
 
 ## Contributing
 
