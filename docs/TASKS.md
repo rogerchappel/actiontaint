@@ -1,14 +1,12 @@
-# actiontaint Tasks
+# Task Breakdown
 
-## Ready
+## Current
 
-- Package entrypoint is importable.
-- CLI help and version commands are available.
-- Release checks cover syntax, tests, smoke, and npm packing.
+- Keep package metadata, release checks, and documentation aligned with the current early-stage scaffold.
+- Preserve a minimal CLI entrypoint so install, smoke, and release validation commands have a real executable target.
 
 ## Next
 
-- Add YAML workflow parsing.
-- Add safe, risky, and mixed GitHub Actions fixtures.
-- Implement `actiontaint scan .github/workflows --format json`.
-- Add fixture-backed CLI tests for scan output.
+- Convert the PRD into implementation milestones.
+- Add fixtures and tests before claiming production-ready behavior.
+- Expand the CLI only when the corresponding behavior is implemented and covered.

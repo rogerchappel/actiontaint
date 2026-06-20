@@ -18,11 +18,11 @@ AI-assisted GitHub Actions often mix pull request titles, issue bodies, comments
 
 ## V1 Scope
 
-- TypeScript CLI package.
+- Node.js CLI package.
 - `actiontaint scan .github/workflows`
-- Parse workflow YAML, jobs, steps, permissions, triggers, and expressions.
-- Flag risky untrusted contexts such as `github.event.issue.body`, PR titles, comments, and changed file content flowing into `run`, `prompt`, `with`, environment variables, or token-bearing steps.
-- Emit stable Markdown and JSON reports with severity, evidence path, and remediation.
+- Parse workflow YAML files with a conservative line-based scanner while the project is pre-1.0.
+- Flag risky untrusted contexts such as `github.event.issue.body`, PR titles, comments, and release text flowing into `run`, `prompt`, `with`, environment variables, or token-bearing steps.
+- Emit stable Markdown and JSON reports with severity, evidence path, line number, and remediation.
 - Include safe, risky, and mixed workflow fixtures.
 - No network calls by default.
 
@@ -34,5 +34,4 @@ AI-assisted GitHub Actions often mix pull request titles, issue bodies, comments
 
 ## Verification
 
-Run `npm test`, `npm run check`, `npm run build`, `npm run smoke`, `bash scripts/validate.sh`, and a real CLI smoke against fixture workflows.
-
+Run `npm test`, `npm run build`, `npm run smoke`, `npm run package:smoke`, `npm run release:check`, `bash scripts/validate.sh`, and a real CLI smoke against workflow fixtures.

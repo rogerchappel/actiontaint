@@ -1,13 +1,12 @@
-# actiontaint Orchestration
+# Orchestration Plan
 
-## Release Readiness Flow
+## Release Checks
 
-1. Run `npm run release:check`.
-2. Run `node /Users/roger/Developer/my-opensource/releasebox/bin/releasebox.js check .` when ReleaseBox is available locally.
-3. Confirm `npm pack --dry-run` includes `src`, docs, license, security, changelog, and contributing files.
+- Run `npm test`, `npm run build`, and `npm run smoke` before release.
+- Keep the release dry-run workflow aligned with local `npm run release:check`.
 
-## Promotion Notes
+## Implementation Flow
 
-- Do not publish until the scanner command has fixture-backed workflow analysis.
-- Keep network access out of default checks.
-- Treat the current CLI as a readiness placeholder for package metadata and discovery.
+- Use `docs/PRD.md` as the source of planned scope.
+- Land small increments with tests and README updates.
+- Treat this package as pre-1.0 until examples and behavior are implemented.
