@@ -7,14 +7,26 @@
   "exports": {
     ".": "./src/index.js"
   },
+  "bin": {
+    "actiontaint": "./src/cli.js"
+  },
   "files": [
     "src",
-    "README.md"
+    "docs",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md"
   ],
   "scripts": {
+    "check": "node --check src/*.js test/*.test.js",
+    "build": "npm run check",
     "test": "node --test",
+    "smoke": "node src/cli.js --help && node src/cli.js --version && node -e \"import('./src/index.js').then((m)=>{ if (m.name !== 'actiontaint') process.exit(1); })\"",
     "package:smoke": "npm pack --dry-run",
-    "release:check": "npm test && npm run package:smoke"
+    "release:check": "npm run check && npm run build && npm test && npm run smoke && npm run package:smoke"
   },
   "keywords": [],
   "author": "StackForge User",

@@ -9,19 +9,24 @@ security posture before using it in production.
 
 ## Install
 
-Replace this section with the generated repository's installation steps.
-
 ```sh
-pnpm install
+npm install actiontaint
 ```
 
 ## Use
 
-Replace this section with the smallest useful example for the generated
-repository.
+Import the package metadata while the scanner implementation is in progress:
 
 ```sh
-pnpm dev
+node -e "import('actiontaint').then((m) => console.log(m.describe()))"
+```
+
+Check the CLI surface before release:
+
+```sh
+actiontaint --help
+actiontaint --version
+actiontaint describe --json
 ```
 
 ## Verify
@@ -30,6 +35,7 @@ Run the local validation script before opening a pull request:
 
 ```sh
 bash scripts/validate.sh
+npm run release:check
 ```
 
 `scripts/validate.sh` runs the repository's standard local checks when they are defined and will also run `agent-qc ready` when `agent-qc` is installed. Missing `agent-qc` is treated as a skip, not a failure.
