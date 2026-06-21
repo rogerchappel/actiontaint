@@ -5,7 +5,7 @@ import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { promisify } from 'node:util';
-import { scanWorkflowText } from '../src/index.js';
+import { scanPath, scanWorkflowText } from '../src/index.js';
 
 const execFileAsync = promisify(execFile);
 
@@ -61,6 +61,35 @@ jobs:
     assert.equal(findings[0].severity, 'high');
     assert.equal(findings[0].sink, 'run');
     assert.deepEqual(findings[0].contexts, ['github.event.pull_request.title']);
+  });
+
+  it('prints a clean Markdown report when no risky flow is found', async () => {
+    const root = await makeTempWorkflowDir();
+    try {
+      await writeFile(join(root, 'safe.yml'), 'name: safe\njobs:\n  ok:\n    steps:\n      - run: echo safe\n');
+
+      const result = await execFileAsync(process.execPath, ['src/index.js', 'scan', root]);
+
+      assert.match(result.stdout, /Scanned 1 workflow file\(s\)/);
+      assert.match(result.stdout, /No risky untrusted event flows found/);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  });
+
+  it('ignores non-workflow files in scanned directories', async () => {
+    const root = await makeTempWorkflowDir();
+    try {
+      await writeFile(join(root, 'notes.txt'), 'run: echo "${{ github.event.issue.body }}"\n');
+      await writeFile(join(root, 'safe.yml'), 'name: safe\njobs:\n  ok:\n    steps:\n      - run: echo safe\n');
+
+      const report = await scanPath(root);
+
+      assert.equal(report.scannedFiles, 1);
+      assert.equal(report.findings.length, 0);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
   });
 
   it('prints JSON scan output for workflow directories', async () => {
