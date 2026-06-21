@@ -27,3 +27,5 @@ Run `npm run release:check` when available before opening a release PR. When a c
 - Confirm README examples still match the CLI or module exports.
 - Confirm `npm pack --dry-run` does not include local fixtures, generated logs, or build caches beyond the intended allowlist.
 - Confirm GitHub Actions runs the same install and package smoke path used locally.
+- Confirm the first release keeps scanner failures advisory unless the release
+  notes explicitly document enforcing high-severity findings in CI.

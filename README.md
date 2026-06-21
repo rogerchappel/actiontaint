@@ -29,19 +29,36 @@ From a checkout, the same smoke path is:
 node src/index.js scan .github/workflows
 ```
 
+`scan` exits with status `1` when a high-severity finding is present. That makes
+it suitable for a local pre-review check, but keep the first rollout advisory
+until the workflow fixtures match the patterns in your repository.
+
 ## Verify
 
-Run the available repository checks before opening a pull request:
+Run the repository checks before opening a pull request:
 
 ```sh
 npm test
-```
-
-If `release:check` exists in `package.json`, run it as the broader release-readiness gate:
-
-```sh
+npm run build
+npm run smoke
+npm run package:smoke
 npm run release:check
 ```
+
+`npm run release:check` is the same release-readiness gate used by CI. It
+combines tests, syntax validation, the CLI smoke path, and a dry-run npm pack.
+
+## Package Surface
+
+The npm package exposes:
+
+```sh
+actiontaint
+```
+
+Published files are limited by the `files` allowlist in `package.json` to the
+runtime, README, license, security policy, changelog, contributing guide, and
+code of conduct.
 
 ## Limitations
 
