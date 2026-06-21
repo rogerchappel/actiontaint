@@ -19,7 +19,7 @@ Examples:
 
 The scanner is intentionally conservative while the project is pre-1.0.`;
 
-const version = "0.1.0";
+export const version = "0.1.0";
 const untrustedContextPattern = /github\.event\.(issue|pull_request|comment|review|release|discussion)\.(body|title|name|comment|description)|github\.event\.comment\.body|github\.event\.pull_request\.body/g;
 const sensitiveSinkPattern = /^\s*(?:-\s*)?(run:|env:|with:|prompt:|body:|message:|script:|args:)/;
 const tokenPattern = /GITHUB_TOKEN|secrets\.|contents:\s*write|pull-requests:\s*write|issues:\s*write|id-token:\s*write/i;
@@ -131,7 +131,7 @@ function formatMarkdown(result) {
   return `${lines.join("\n")}\n`;
 }
 
-async function main(argv) {
+export async function main(argv) {
   const [command, maybePath, maybeJson] = argv;
 
   if (command === "--version" || command === "-v") {
