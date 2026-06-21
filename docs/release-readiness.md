@@ -16,7 +16,7 @@ Use this checklist before cutting a release or asking a reviewer to trust the pa
 
 - `npm run test`: `node --test`
 - `npm run build`: `node --check src/index.js`
-- `npm run smoke`: `node src/index.js --help && node src/index.js --version`
+- `npm run smoke`: `node src/index.js --help && node src/index.js --version && node src/cli.js --help && node src/index.js scan .github/workflows`
 - `npm run package:smoke`: `npm run build && npm pack --dry-run`
 - `npm run release:check`: `npm test && npm run build && npm run smoke && npm run package:smoke`
 
