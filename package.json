@@ -23,7 +23,7 @@
     "build": "node --check src/index.js",
     "test": "node --test",
     "smoke": "node src/index.js --help && node src/index.js --version && node src/cli.js --help && node src/index.js scan .github/workflows",
-    "package:smoke": "npm run build && npm pack --dry-run",
+    "package:smoke": "npm run build && node scripts/pack-smoke.mjs",
     "release:check": "npm test && npm run build && npm run smoke && npm run package:smoke"
   },
   "keywords": [
