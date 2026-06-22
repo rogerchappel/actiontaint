@@ -47,6 +47,8 @@ npm run release:check
 
 `npm run release:check` is the same release-readiness gate used by CI. It
 combines tests, syntax validation, the CLI smoke path, and a dry-run npm pack.
+`npm run package:smoke` also asserts that the packed tarball includes both CLI
+entrypoints and the support files expected by public users.
 
 ## Package Surface
 
