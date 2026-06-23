@@ -37,6 +37,16 @@ The repository includes `fixtures/workflows/token-bearing-message.yml` as a
 fixture for token-bearing action inputs that interpolate issue text into a
 script body.
 
+Review the demo workflow fixtures and scanner contract:
+
+```sh
+bash demo/workflow-risk-tour.sh
+```
+
+The tour compares a metadata-only issue comment workflow with a risky
+`pull_request_target` workflow that feeds PR title and body text into an agent
+prompt under write permissions.
+
 ## Verify
 
 Run the repository checks before opening a pull request:
@@ -71,6 +81,12 @@ contributing guide, and code of conduct.
 - The package is still a v0.1.0 project and the scanner uses conservative line-based workflow checks rather than full YAML or expression evaluation.
 - Treat the PRD as direction, not a guarantee that every listed capability is implemented.
 - Do not use the package as the only control for production security, compliance, or release decisions until fixtures cover your workflow patterns.
+
+## Demo and Promotion
+
+- [Workflow risk fixture tour](docs/tutorials/workflow-risk-fixtures.md)
+- [Video brief](docs/promo/video-brief.md)
+- [Social hooks](docs/promo/social-hooks.md)
 
 ## Contributing
 

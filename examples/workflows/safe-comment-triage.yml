@@ -1,0 +1,18 @@
+name: Safe comment triage
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Record comment metadata only
+        run: |
+          echo "comment_id=${{ github.event.comment.id }}"
+          echo "issue_number=${{ github.event.issue.number }}"
