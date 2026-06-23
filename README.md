@@ -33,6 +33,10 @@ node src/index.js scan .github/workflows
 it suitable for a local pre-review check, but keep the first rollout advisory
 until the workflow fixtures match the patterns in your repository.
 
+The repository includes `fixtures/workflows/token-bearing-message.yml` as a
+fixture for token-bearing action inputs that interpolate issue text into a
+script body.
+
 ## Verify
 
 Run the repository checks before opening a pull request:
@@ -59,8 +63,8 @@ actiontaint
 ```
 
 Published files are limited by the `files` allowlist in `package.json` to the
-runtime, README, license, security policy, changelog, contributing guide, and
-code of conduct.
+runtime, workflow fixtures, README, license, security policy, changelog,
+contributing guide, and code of conduct.
 
 ## Limitations
 
