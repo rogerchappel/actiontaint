@@ -6,6 +6,7 @@ import { readFile } from "node:fs/promises";
 const expectedFiles = [
   "src/index.js",
   "src/cli.js",
+  "fixtures/workflows/token-bearing-message.yml",
   "README.md",
   "LICENSE",
   "CHANGELOG.md",

@@ -12,6 +12,7 @@
   },
   "files": [
     "src",
+    "fixtures",
     "README.md",
     "LICENSE",
     "SECURITY.md",
