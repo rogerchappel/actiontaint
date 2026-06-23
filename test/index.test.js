@@ -2,12 +2,14 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert';
 import { execFile } from 'node:child_process';
 import { mkdir, rm, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 import { promisify } from 'node:util';
 import { scanPath, scanWorkflowText } from '../src/index.js';
 
 const execFileAsync = promisify(execFile);
+const repoRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 
 describe('actiontaint', () => {
   it('should export from src/index.js', async () => {
@@ -61,6 +63,16 @@ jobs:
     assert.equal(findings[0].severity, 'high');
     assert.equal(findings[0].sink, 'run');
     assert.deepEqual(findings[0].contexts, ['github.event.pull_request.title']);
+  });
+
+  it('keeps token-bearing context for multiline action inputs', async () => {
+    const report = await scanPath(join(repoRoot, 'fixtures/workflows/token-bearing-message.yml'));
+
+    assert.equal(report.scannedFiles, 1);
+    assert.equal(report.findings.length, 1);
+    assert.equal(report.findings[0].severity, 'high');
+    assert.equal(report.findings[0].sink, 'expression');
+    assert.deepEqual(report.findings[0].contexts, ['github.event.issue.title']);
   });
 
   it('prints a clean Markdown report when no risky flow is found', async () => {
