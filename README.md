@@ -17,12 +17,15 @@ pnpm install
 
 ## Use
 
-Replace this section with the smallest useful example for the generated
-repository.
+Review the starter workflow fixtures and scanner contract:
 
 ```sh
-pnpm dev
+bash demo/workflow-risk-tour.sh
 ```
+
+The tour compares a metadata-only issue comment workflow with a risky
+`pull_request_target` workflow that feeds PR title and body text into an agent
+prompt under write permissions.
 
 ## Verify
 
@@ -33,6 +36,12 @@ bash scripts/validate.sh
 ```
 
 `scripts/validate.sh` runs the repository's standard local checks when they are defined and will also run `agent-qc ready` when `agent-qc` is installed. Missing `agent-qc` is treated as a skip, not a failure.
+
+## Demo and Promotion
+
+- [Workflow risk fixture tour](docs/tutorials/workflow-risk-fixtures.md)
+- [Video brief](docs/promo/video-brief.md)
+- [Social hooks](docs/promo/social-hooks.md)
 
 ## Contributing
 
