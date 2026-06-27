@@ -37,5 +37,21 @@ if (packageJson.bin?.actiontaint !== "./src/index.js") {
   console.error("actiontaint package smoke failed; expected actiontaint bin in package metadata.");
   process.exit(1);
 }
+if (!packageJson.repository?.url?.includes("github.com/rogerchappel/actiontaint")) {
+  console.error("actiontaint package smoke failed; expected repository metadata.");
+  process.exit(1);
+}
+if (!packageJson.bugs?.url?.includes("github.com/rogerchappel/actiontaint/issues")) {
+  console.error("actiontaint package smoke failed; expected issue tracker metadata.");
+  process.exit(1);
+}
+if (!packageJson.homepage?.includes("github.com/rogerchappel/actiontaint#readme")) {
+  console.error("actiontaint package smoke failed; expected README homepage metadata.");
+  process.exit(1);
+}
+if (!packageJson.scripts?.["release:check"]?.includes("package:smoke")) {
+  console.error("actiontaint package smoke failed; release:check must include package:smoke.");
+  process.exit(1);
+}
 
 console.log(`actiontaint package smoke passed with ${pack.files.length} packed file(s).`);
