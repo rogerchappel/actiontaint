@@ -17,10 +17,12 @@ Use this checklist before cutting a release or asking a reviewer to trust the pa
 - `npm run test`: `node --test`
 - `npm run build`: `node --check src/index.js`
 - `npm run smoke`: `node src/index.js --help && node src/index.js --version && node src/cli.js --help && node src/index.js scan .github/workflows`
-- `npm run package:smoke`: `npm run build && npm pack --dry-run`
+- `npm run package:smoke`: `npm run build && node scripts/pack-smoke.mjs`
 - `npm run release:check`: `npm test && npm run build && npm run smoke && npm run package:smoke`
 
 Run `npm run release:check` when available before opening a release PR. When a command is unavailable, use the closest listed command and record the reason in the PR.
+The package smoke script verifies the dry-run pack contents, CLI bin mapping,
+repository links, issue tracker, README homepage, and release-check wiring.
 
 ## Reviewer Notes
 
