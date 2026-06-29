@@ -65,6 +65,19 @@ jobs:
     assert.deepEqual(findings[0].contexts, ['github.event.pull_request.title']);
   });
 
+  it('ignores commented workflow examples', () => {
+    const findings = scanWorkflowText(`
+name: draft
+jobs:
+  triage:
+    steps:
+      # - run: echo "\${{ github.event.issue.body }}"
+      - run: echo "reviewed"
+`, 'draft.yml');
+
+    assert.equal(findings.length, 0);
+  });
+
   it('keeps token-bearing context for multiline action inputs', async () => {
     const report = await scanPath(join(repoRoot, 'fixtures/workflows/token-bearing-message.yml'));
 

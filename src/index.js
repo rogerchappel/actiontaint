@@ -48,6 +48,10 @@ export function scanWorkflowText(text, file = "<inline>") {
   for (let index = 0; index < lines.length; index += 1) {
     const line = lines[index];
 
+    if (/^\s*#/.test(line)) {
+      continue;
+    }
+
     if (/^\s*-\s+name:/.test(line) || /^\s*-\s+uses:/.test(line) || /^\s*-\s+run:/.test(line)) {
       tokenBearingStep = false;
     }
