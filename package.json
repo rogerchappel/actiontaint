@@ -1,7 +1,7 @@
 {
   "name": "actiontaint",
   "version": "0.1.0",
-  "description": "actiontaint is an early-stage local-first developer tool.",
+  "description": "Local-first GitHub Actions workflow scanner for risky untrusted event flows.",
   "type": "module",
   "main": "./src/index.js",
   "bin": {
