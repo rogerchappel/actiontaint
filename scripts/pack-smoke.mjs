@@ -53,5 +53,9 @@ if (!packageJson.scripts?.["release:check"]?.includes("package:smoke")) {
   console.error("actiontaint package smoke failed; release:check must include package:smoke.");
   process.exit(1);
 }
+if (!packageJson.scripts?.["release:check"]?.includes("npm run check")) {
+  console.error("actiontaint package smoke failed; release:check must include npm run check.");
+  process.exit(1);
+}
 
 console.log(`actiontaint package smoke passed with ${pack.files.length} packed file(s).`);
