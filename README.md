@@ -32,6 +32,8 @@ node src/index.js scan .github/workflows
 `scan` exits with status `1` when a high-severity finding is present. That makes
 it suitable for a local pre-review check, but keep the first rollout advisory
 until the workflow fixtures match the patterns in your repository.
+Full-line YAML comments and non-workflow files are ignored so copied examples
+or disabled steps do not become release-blocking findings.
 
 The repository includes `fixtures/workflows/token-bearing-message.yml` as a
 fixture for token-bearing action inputs that interpolate issue text into a
