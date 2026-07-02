@@ -14,7 +14,7 @@ For local development:
 npm install
 ```
 
-## Use
+## Usage
 
 Scan a workflow directory for risky uses of untrusted GitHub event text:
 
