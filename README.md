@@ -11,7 +11,7 @@ This repository is an early v0.1.0 implementation. It contains a conservative lo
 For local development:
 
 ```sh
-npm install
+npm ci
 ```
 
 ## Usage
